@@ -1,0 +1,6 @@
+# ninja log v5
+0	984	6545659536090955	CMakeFiles/CMakeTarget.dir/glad.c.obj	7f85c594f14ce015
+3	148	6545659799754254	CMakeFiles/CMakeTarget.dir/sim.c.obj	e10bc5b044770359
+39	148	6545663297589301	CMakeFiles/CMakeTarget.dir/sim.c.obj	e10bc5b044770359
+4	960	6545663305490506	CMakeFiles/CMakeTarget.dir/glad.c.obj	7f85c594f14ce015
+961	1200	6545663308087554	CMakeTarget.exe	8305298987062eb7
