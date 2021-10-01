@@ -3,14 +3,14 @@
 GLFWwindow* createWindow(int width, int height, const char* title) {
     if (!glfwInit()) {
 		printf("Failed to Init GLFW!\n");
-		return 0;
+		return NULL;
 	}
 
 	GLFWmonitor* monitor = glfwGetPrimaryMonitor();
 	const GLFWvidmode* mode = glfwGetVideoMode(monitor);
 
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
 
 	glfwWindowHint(GLFW_RED_BITS, mode->redBits);
 	glfwWindowHint(GLFW_GREEN_BITS, mode->greenBits);
@@ -22,7 +22,7 @@ GLFWwindow* createWindow(int width, int height, const char* title) {
 	if (!window) {
 		printf("Failed to Create Window!\n");
 		glfwTerminate();
-		return 0;
+		return NULL;
 	}
 
 	glfwMakeContextCurrent(window);
@@ -30,31 +30,10 @@ GLFWwindow* createWindow(int width, int height, const char* title) {
 
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 		printf("Failed to Init GLAD!\n");
-		return 0;
+		return NULL;
 	}    
 
     printf("%s\n", glGetString(GL_VERSION));
 
     return window;
-}
-
-int main(void) {
-    GLFWwindow* window = createWindow(800, 600, "Test");
- 
-    if (!window)
-    {
-        glfwTerminate();
-        return -1;
-    }
- 
-    while (!glfwWindowShouldClose(window))
-    {
-        glfwSwapBuffers(window);
-        glfwPollEvents();
-    }
- 
-    glfwDestroyWindow(window);
- 
-    glfwTerminate();
-    return 0;
 }

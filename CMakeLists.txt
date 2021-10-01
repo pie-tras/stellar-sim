@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(stellar_sim VERSION 3.3.5 LANGUAGES C)
+project(stellar_sim VERSION 0.1 LANGUAGES C)
 
+include_directories(src)
 include_directories(lib/GLAD/include)
 include_directories(lib/GLFW/include)
 include_directories(lib/glm)
