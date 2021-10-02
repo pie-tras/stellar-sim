@@ -15,13 +15,13 @@ The C compiler identification is Clang, found in "C:/draglantix_workspace/stella
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: C:/draglantix_workspace/stellar-sim/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/msys64/mingw64/bin/ninja.exe cmTC_35b33 && [1/2] Building C object CMakeFiles/cmTC_35b33.dir/CMakeCCompilerABI.c.obj
+Run Build Command(s):C:/msys64/mingw64/bin/ninja.exe cmTC_43444 && [1/2] Building C object CMakeFiles/cmTC_43444.dir/CMakeCCompilerABI.c.obj
 clang version 12.0.1
 Target: x86_64-w64-windows-gnu
 Thread model: posix
 InstalledDir: C:/msys64/mingw64/bin
  (in-process)
- "C:/msys64/mingw64/bin/clang.exe" -cc1 -triple x86_64-w64-windows-gnu -emit-obj -mrelax-all --mrelax-relocations -disable-free -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=none -fmath-errno -fno-rounding-math -mconstructor-aliases -mms-bitfields -munwind-tables -target-cpu x86-64 -tune-cpu generic -debugger-tuning=gdb -v -resource-dir C:/msys64/mingw64/lib/clang/12.0.1 -dependency-file "CMakeFiles\\cmTC_35b33.dir\\CMakeCCompilerABI.c.obj.d" -MT CMakeFiles/cmTC_35b33.dir/CMakeCCompilerABI.c.obj -sys-header-deps -internal-isystem C:/msys64/mingw64/lib/clang/12.0.1/include -internal-isystem C:/msys64/mingw64/x86_64-w64-mingw32/sys-root/mingw/include -internal-isystem C:/msys64/mingw64/x86_64-w64-mingw32/include -internal-isystem C:/msys64/mingw64/include -fdebug-compilation-dir "C:\\draglantix_workspace\\stellar-sim\\build\\CMakeFiles\\CMakeTmp" -ferror-limit 19 -fno-use-cxa-atexit -fgnuc-version=4.2.1 -exception-model=seh -faddrsig -o CMakeFiles/cmTC_35b33.dir/CMakeCCompilerABI.c.obj -x c C:/msys64/mingw64/share/cmake-3.21/Modules/CMakeCCompilerABI.c
+ "C:/msys64/mingw64/bin/clang.exe" -cc1 -triple x86_64-w64-windows-gnu -emit-obj -mrelax-all --mrelax-relocations -disable-free -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=none -fmath-errno -fno-rounding-math -mconstructor-aliases -mms-bitfields -munwind-tables -target-cpu x86-64 -tune-cpu generic -debugger-tuning=gdb -v -resource-dir C:/msys64/mingw64/lib/clang/12.0.1 -dependency-file "CMakeFiles\\cmTC_43444.dir\\CMakeCCompilerABI.c.obj.d" -MT CMakeFiles/cmTC_43444.dir/CMakeCCompilerABI.c.obj -sys-header-deps -internal-isystem C:/msys64/mingw64/lib/clang/12.0.1/include -internal-isystem C:/msys64/mingw64/x86_64-w64-mingw32/sys-root/mingw/include -internal-isystem C:/msys64/mingw64/x86_64-w64-mingw32/include -internal-isystem C:/msys64/mingw64/include -fdebug-compilation-dir "C:\\draglantix_workspace\\stellar-sim\\build\\CMakeFiles\\CMakeTmp" -ferror-limit 19 -fno-use-cxa-atexit -fgnuc-version=4.2.1 -exception-model=seh -faddrsig -o CMakeFiles/cmTC_43444.dir/CMakeCCompilerABI.c.obj -x c C:/msys64/mingw64/share/cmake-3.21/Modules/CMakeCCompilerABI.c
 clang -cc1 version 12.0.1 based upon LLVM 12.0.1 default target x86_64-w64-windows-gnu
 ignoring nonexistent directory "C:/msys64/mingw64/x86_64-w64-mingw32/sys-root/mingw/include"
 #include "..." search starts here:
@@ -30,12 +30,12 @@ ignoring nonexistent directory "C:/msys64/mingw64/x86_64-w64-mingw32/sys-root/mi
  C:/msys64/mingw64/x86_64-w64-mingw32/include
  C:/msys64/mingw64/include
 End of search list.
-[2/2] Linking C executable cmTC_35b33.exe
+[2/2] Linking C executable cmTC_43444.exe
 clang version 12.0.1
 Target: x86_64-w64-windows-gnu
 Thread model: posix
 InstalledDir: C:/msys64/mingw64/bin
- "C:/msys64/mingw64/bin/ld" -m i386pep -Bdynamic -o cmTC_35b33.exe C:/msys64/mingw64/x86_64-w64-mingw32/lib/crt2.o C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/10.3.0/crtbegin.o -LC:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/10.3.0 -LC:/msys64/mingw64/x86_64-w64-mingw32/lib -LC:/msys64/mingw64/lib -LC:/msys64/mingw64/x86_64-w64-mingw32/sys-root/mingw/lib CMakeFiles/cmTC_35b33.dir/CMakeCCompilerABI.c.obj --out-implib libcmTC_35b33.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt -lkernel32 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/10.3.0/crtend.o
+ "C:/msys64/mingw64/bin/ld" -m i386pep -Bdynamic -o cmTC_43444.exe C:/msys64/mingw64/x86_64-w64-mingw32/lib/crt2.o C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/10.3.0/crtbegin.o -LC:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/10.3.0 -LC:/msys64/mingw64/x86_64-w64-mingw32/lib -LC:/msys64/mingw64/lib -LC:/msys64/mingw64/x86_64-w64-mingw32/sys-root/mingw/lib CMakeFiles/cmTC_43444.dir/CMakeCCompilerABI.c.obj --out-implib libcmTC_43444.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt -lkernel32 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/10.3.0/crtend.o
 
 
 
@@ -56,13 +56,13 @@ Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld\.exe|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: C:/draglantix_workspace/stellar-sim/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command(s):C:/msys64/mingw64/bin/ninja.exe cmTC_35b33 && [1/2] Building C object CMakeFiles/cmTC_35b33.dir/CMakeCCompilerABI.c.obj]
+  ignore line: [Run Build Command(s):C:/msys64/mingw64/bin/ninja.exe cmTC_43444 && [1/2] Building C object CMakeFiles/cmTC_43444.dir/CMakeCCompilerABI.c.obj]
   ignore line: [clang version 12.0.1]
   ignore line: [Target: x86_64-w64-windows-gnu]
   ignore line: [Thread model: posix]
   ignore line: [InstalledDir: C:/msys64/mingw64/bin]
   ignore line: [ (in-process)]
-  ignore line: [ "C:/msys64/mingw64/bin/clang.exe" -cc1 -triple x86_64-w64-windows-gnu -emit-obj -mrelax-all --mrelax-relocations -disable-free -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=none -fmath-errno -fno-rounding-math -mconstructor-aliases -mms-bitfields -munwind-tables -target-cpu x86-64 -tune-cpu generic -debugger-tuning=gdb -v -resource-dir C:/msys64/mingw64/lib/clang/12.0.1 -dependency-file "CMakeFiles\\cmTC_35b33.dir\\CMakeCCompilerABI.c.obj.d" -MT CMakeFiles/cmTC_35b33.dir/CMakeCCompilerABI.c.obj -sys-header-deps -internal-isystem C:/msys64/mingw64/lib/clang/12.0.1/include -internal-isystem C:/msys64/mingw64/x86_64-w64-mingw32/sys-root/mingw/include -internal-isystem C:/msys64/mingw64/x86_64-w64-mingw32/include -internal-isystem C:/msys64/mingw64/include -fdebug-compilation-dir "C:\\draglantix_workspace\\stellar-sim\\build\\CMakeFiles\\CMakeTmp" -ferror-limit 19 -fno-use-cxa-atexit -fgnuc-version=4.2.1 -exception-model=seh -faddrsig -o CMakeFiles/cmTC_35b33.dir/CMakeCCompilerABI.c.obj -x c C:/msys64/mingw64/share/cmake-3.21/Modules/CMakeCCompilerABI.c]
+  ignore line: [ "C:/msys64/mingw64/bin/clang.exe" -cc1 -triple x86_64-w64-windows-gnu -emit-obj -mrelax-all --mrelax-relocations -disable-free -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=none -fmath-errno -fno-rounding-math -mconstructor-aliases -mms-bitfields -munwind-tables -target-cpu x86-64 -tune-cpu generic -debugger-tuning=gdb -v -resource-dir C:/msys64/mingw64/lib/clang/12.0.1 -dependency-file "CMakeFiles\\cmTC_43444.dir\\CMakeCCompilerABI.c.obj.d" -MT CMakeFiles/cmTC_43444.dir/CMakeCCompilerABI.c.obj -sys-header-deps -internal-isystem C:/msys64/mingw64/lib/clang/12.0.1/include -internal-isystem C:/msys64/mingw64/x86_64-w64-mingw32/sys-root/mingw/include -internal-isystem C:/msys64/mingw64/x86_64-w64-mingw32/include -internal-isystem C:/msys64/mingw64/include -fdebug-compilation-dir "C:\\draglantix_workspace\\stellar-sim\\build\\CMakeFiles\\CMakeTmp" -ferror-limit 19 -fno-use-cxa-atexit -fgnuc-version=4.2.1 -exception-model=seh -faddrsig -o CMakeFiles/cmTC_43444.dir/CMakeCCompilerABI.c.obj -x c C:/msys64/mingw64/share/cmake-3.21/Modules/CMakeCCompilerABI.c]
   ignore line: [clang -cc1 version 12.0.1 based upon LLVM 12.0.1 default target x86_64-w64-windows-gnu]
   ignore line: [ignoring nonexistent directory "C:/msys64/mingw64/x86_64-w64-mingw32/sys-root/mingw/include"]
   ignore line: [#include "..." search starts here:]
@@ -71,27 +71,27 @@ Parsed C implicit link information from above output:
   ignore line: [ C:/msys64/mingw64/x86_64-w64-mingw32/include]
   ignore line: [ C:/msys64/mingw64/include]
   ignore line: [End of search list.]
-  ignore line: [[2/2] Linking C executable cmTC_35b33.exe]
+  ignore line: [[2/2] Linking C executable cmTC_43444.exe]
   ignore line: [clang version 12.0.1]
   ignore line: [Target: x86_64-w64-windows-gnu]
   ignore line: [Thread model: posix]
   ignore line: [InstalledDir: C:/msys64/mingw64/bin]
-  link line: [ "C:/msys64/mingw64/bin/ld" -m i386pep -Bdynamic -o cmTC_35b33.exe C:/msys64/mingw64/x86_64-w64-mingw32/lib/crt2.o C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/10.3.0/crtbegin.o -LC:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/10.3.0 -LC:/msys64/mingw64/x86_64-w64-mingw32/lib -LC:/msys64/mingw64/lib -LC:/msys64/mingw64/x86_64-w64-mingw32/sys-root/mingw/lib CMakeFiles/cmTC_35b33.dir/CMakeCCompilerABI.c.obj --out-implib libcmTC_35b33.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt -lkernel32 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/10.3.0/crtend.o]
+  link line: [ "C:/msys64/mingw64/bin/ld" -m i386pep -Bdynamic -o cmTC_43444.exe C:/msys64/mingw64/x86_64-w64-mingw32/lib/crt2.o C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/10.3.0/crtbegin.o -LC:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/10.3.0 -LC:/msys64/mingw64/x86_64-w64-mingw32/lib -LC:/msys64/mingw64/lib -LC:/msys64/mingw64/x86_64-w64-mingw32/sys-root/mingw/lib CMakeFiles/cmTC_43444.dir/CMakeCCompilerABI.c.obj --out-implib libcmTC_43444.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt -lkernel32 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/10.3.0/crtend.o]
     arg [C:/msys64/mingw64/bin/ld] ==> ignore
     arg [-m] ==> ignore
     arg [i386pep] ==> ignore
     arg [-Bdynamic] ==> search dynamic
     arg [-o] ==> ignore
-    arg [cmTC_35b33.exe] ==> ignore
+    arg [cmTC_43444.exe] ==> ignore
     arg [C:/msys64/mingw64/x86_64-w64-mingw32/lib/crt2.o] ==> obj [C:/msys64/mingw64/x86_64-w64-mingw32/lib/crt2.o]
     arg [C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/10.3.0/crtbegin.o] ==> obj [C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/10.3.0/crtbegin.o]
     arg [-LC:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/10.3.0] ==> dir [C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/10.3.0]
     arg [-LC:/msys64/mingw64/x86_64-w64-mingw32/lib] ==> dir [C:/msys64/mingw64/x86_64-w64-mingw32/lib]
     arg [-LC:/msys64/mingw64/lib] ==> dir [C:/msys64/mingw64/lib]
     arg [-LC:/msys64/mingw64/x86_64-w64-mingw32/sys-root/mingw/lib] ==> dir [C:/msys64/mingw64/x86_64-w64-mingw32/sys-root/mingw/lib]
-    arg [CMakeFiles/cmTC_35b33.dir/CMakeCCompilerABI.c.obj] ==> ignore
+    arg [CMakeFiles/cmTC_43444.dir/CMakeCCompilerABI.c.obj] ==> ignore
     arg [--out-implib] ==> ignore
-    arg [libcmTC_35b33.dll.a] ==> ignore
+    arg [libcmTC_43444.dll.a] ==> ignore
     arg [--major-image-version] ==> ignore
     arg [0] ==> ignore
     arg [--minor-image-version] ==> ignore

@@ -2,34 +2,47 @@
 #include "file_util.h"
 
 struct loaded_file* readFile(const char* path) {
-    FILE* in_file = fopen(path, "r");
+    FILE *fp;
+    long size;
+    char *buffer;
 
-    if (!in_file) {
+    fp = fopen(path, "rb");
+
+    if (!fp) {
         printf("Could not load file at path: %s", path);
         return NULL;
     }
 
-    int i = 0;
-    int size = 256;
-    char* buff = malloc(size);
-    char c;
-    while((c = fgetc(in_file)) != EOF) {
-        buff[i] = c;
-        i++;
-        if (i == size) {
-            size *= 2;
-            buff = realloc(buff, size);
-        }
+    fseek(fp, 0L, SEEK_END);
+    size = ftell(fp);
+    rewind(fp);
+
+    buffer = calloc(1, size + 1);
+    if (!buffer) {
+        fclose(fp);
+        printf("Memory alloc failed.");
     }
+
+    if (1!=fread(buffer, size, 1, fp)) {
+        fclose(fp);
+        free(buffer);
+        printf("Copy to buffer failed");
+    }
+
+    fclose(fp);
 
     struct loaded_file* loaded = malloc(sizeof(loaded));
     
-    loaded->content = malloc(i);
-    strcpy(loaded->content, buff);
-    loaded->length = i;
+    loaded->content = calloc(1, size + 1);
+    strcpy(loaded->content, buffer);
+    loaded->size = size;
 
-    free(buff);
-    fclose(in_file);
+    free(buffer);
 
     return loaded;
+}
+
+void cleanLoadedFile(struct loaded_file* loaded){
+    free(loaded->content);
+    free(loaded);
 }
