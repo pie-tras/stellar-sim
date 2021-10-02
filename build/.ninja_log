@@ -1,7 +1,7 @@
 # ninja log v5
-5	108	6548376460003521	CMakeFiles/stellar_sim.dir/src/renderer/window_util.c.obj	9cd06a56a0a97ad0
-11	119	6548376460123522	CMakeFiles/stellar_sim.dir/src/main/file_util.c.obj	cbf50a425cca09fd
-3	120	6548376460053542	CMakeFiles/stellar_sim.dir/src/renderer/shader_util.c.obj	6dc8b69c9e57314a
-8	125	6548376460193506	CMakeFiles/stellar_sim.dir/src/main/start.c.obj	dc4a748f8c6697ed
-1	637	6548376465172513	CMakeFiles/stellar_sim.dir/src/glad.c.obj	2bea46010d5f0af
-640	792	6548376466856898	stellar_sim.exe	3645e269efcc7637
+3	206	6548527326823744	CMakeFiles/stellar_sim.dir/src/renderer/shader_util.c.obj	b17e7e737d36a8ce
+6	214	6548527326863789	CMakeFiles/stellar_sim.dir/src/main/file_util.c.obj	572d9790430f1e8f
+8	221	6548527326963755	CMakeFiles/stellar_sim.dir/src/renderer/window_util.c.obj	3cc6d0d782691487
+4	245	6548527327103728	CMakeFiles/stellar_sim.dir/src/main/start.c.obj	4396a8acff3b54a3
+0	819	6548527332724382	CMakeFiles/stellar_sim.dir/src/glad.c.obj	5974f312ebf48436
+821	966	6548527334453732	stellar_sim.exe	9659338a1115cf8a

@@ -70,7 +70,7 @@ build cmake_object_order_depends_target_stellar_sim: phony || CMakeFiles/stellar
 
 build CMakeFiles/stellar_sim.dir/src/glad.c.obj: C_COMPILER__stellar_sim_ C$:/draglantix_workspace/stellar-sim/src/glad.c || cmake_object_order_depends_target_stellar_sim
   DEP_FILE = CMakeFiles\stellar_sim.dir\src\glad.c.obj.d
-  INCLUDES = -IC:/draglantix_workspace/stellar-sim/src -IC:/draglantix_workspace/stellar-sim/lib/GLAD/include -IC:/draglantix_workspace/stellar-sim/lib/GLFW/include -IC:/draglantix_workspace/stellar-sim/lib/glm -IC:/draglantix_workspace/stellar-sim/stb_image
+  INCLUDES = -IC:/draglantix_workspace/stellar-sim/src -IC:/draglantix_workspace/stellar-sim/lib/GLAD/include -IC:/draglantix_workspace/stellar-sim/lib/GLFW/include -IC:/draglantix_workspace/stellar-sim/lib/cglm/include -IC:/draglantix_workspace/stellar-sim/stb_image
   OBJECT_DIR = CMakeFiles\stellar_sim.dir
   OBJECT_FILE_DIR = CMakeFiles\stellar_sim.dir\src
   TARGET_COMPILE_PDB = CMakeFiles\stellar_sim.dir\
@@ -78,7 +78,7 @@ build CMakeFiles/stellar_sim.dir/src/glad.c.obj: C_COMPILER__stellar_sim_ C$:/dr
 
 build CMakeFiles/stellar_sim.dir/src/main/file_util.c.obj: C_COMPILER__stellar_sim_ C$:/draglantix_workspace/stellar-sim/src/main/file_util.c || cmake_object_order_depends_target_stellar_sim
   DEP_FILE = CMakeFiles\stellar_sim.dir\src\main\file_util.c.obj.d
-  INCLUDES = -IC:/draglantix_workspace/stellar-sim/src -IC:/draglantix_workspace/stellar-sim/lib/GLAD/include -IC:/draglantix_workspace/stellar-sim/lib/GLFW/include -IC:/draglantix_workspace/stellar-sim/lib/glm -IC:/draglantix_workspace/stellar-sim/stb_image
+  INCLUDES = -IC:/draglantix_workspace/stellar-sim/src -IC:/draglantix_workspace/stellar-sim/lib/GLAD/include -IC:/draglantix_workspace/stellar-sim/lib/GLFW/include -IC:/draglantix_workspace/stellar-sim/lib/cglm/include -IC:/draglantix_workspace/stellar-sim/stb_image
   OBJECT_DIR = CMakeFiles\stellar_sim.dir
   OBJECT_FILE_DIR = CMakeFiles\stellar_sim.dir\src\main
   TARGET_COMPILE_PDB = CMakeFiles\stellar_sim.dir\
@@ -86,7 +86,7 @@ build CMakeFiles/stellar_sim.dir/src/main/file_util.c.obj: C_COMPILER__stellar_s
 
 build CMakeFiles/stellar_sim.dir/src/main/start.c.obj: C_COMPILER__stellar_sim_ C$:/draglantix_workspace/stellar-sim/src/main/start.c || cmake_object_order_depends_target_stellar_sim
   DEP_FILE = CMakeFiles\stellar_sim.dir\src\main\start.c.obj.d
-  INCLUDES = -IC:/draglantix_workspace/stellar-sim/src -IC:/draglantix_workspace/stellar-sim/lib/GLAD/include -IC:/draglantix_workspace/stellar-sim/lib/GLFW/include -IC:/draglantix_workspace/stellar-sim/lib/glm -IC:/draglantix_workspace/stellar-sim/stb_image
+  INCLUDES = -IC:/draglantix_workspace/stellar-sim/src -IC:/draglantix_workspace/stellar-sim/lib/GLAD/include -IC:/draglantix_workspace/stellar-sim/lib/GLFW/include -IC:/draglantix_workspace/stellar-sim/lib/cglm/include -IC:/draglantix_workspace/stellar-sim/stb_image
   OBJECT_DIR = CMakeFiles\stellar_sim.dir
   OBJECT_FILE_DIR = CMakeFiles\stellar_sim.dir\src\main
   TARGET_COMPILE_PDB = CMakeFiles\stellar_sim.dir\
@@ -94,7 +94,7 @@ build CMakeFiles/stellar_sim.dir/src/main/start.c.obj: C_COMPILER__stellar_sim_ 
 
 build CMakeFiles/stellar_sim.dir/src/renderer/shader_util.c.obj: C_COMPILER__stellar_sim_ C$:/draglantix_workspace/stellar-sim/src/renderer/shader_util.c || cmake_object_order_depends_target_stellar_sim
   DEP_FILE = CMakeFiles\stellar_sim.dir\src\renderer\shader_util.c.obj.d
-  INCLUDES = -IC:/draglantix_workspace/stellar-sim/src -IC:/draglantix_workspace/stellar-sim/lib/GLAD/include -IC:/draglantix_workspace/stellar-sim/lib/GLFW/include -IC:/draglantix_workspace/stellar-sim/lib/glm -IC:/draglantix_workspace/stellar-sim/stb_image
+  INCLUDES = -IC:/draglantix_workspace/stellar-sim/src -IC:/draglantix_workspace/stellar-sim/lib/GLAD/include -IC:/draglantix_workspace/stellar-sim/lib/GLFW/include -IC:/draglantix_workspace/stellar-sim/lib/cglm/include -IC:/draglantix_workspace/stellar-sim/stb_image
   OBJECT_DIR = CMakeFiles\stellar_sim.dir
   OBJECT_FILE_DIR = CMakeFiles\stellar_sim.dir\src\renderer
   TARGET_COMPILE_PDB = CMakeFiles\stellar_sim.dir\
@@ -102,7 +102,7 @@ build CMakeFiles/stellar_sim.dir/src/renderer/shader_util.c.obj: C_COMPILER__ste
 
 build CMakeFiles/stellar_sim.dir/src/renderer/window_util.c.obj: C_COMPILER__stellar_sim_ C$:/draglantix_workspace/stellar-sim/src/renderer/window_util.c || cmake_object_order_depends_target_stellar_sim
   DEP_FILE = CMakeFiles\stellar_sim.dir\src\renderer\window_util.c.obj.d
-  INCLUDES = -IC:/draglantix_workspace/stellar-sim/src -IC:/draglantix_workspace/stellar-sim/lib/GLAD/include -IC:/draglantix_workspace/stellar-sim/lib/GLFW/include -IC:/draglantix_workspace/stellar-sim/lib/glm -IC:/draglantix_workspace/stellar-sim/stb_image
+  INCLUDES = -IC:/draglantix_workspace/stellar-sim/src -IC:/draglantix_workspace/stellar-sim/lib/GLAD/include -IC:/draglantix_workspace/stellar-sim/lib/GLFW/include -IC:/draglantix_workspace/stellar-sim/lib/cglm/include -IC:/draglantix_workspace/stellar-sim/stb_image
   OBJECT_DIR = CMakeFiles\stellar_sim.dir
   OBJECT_FILE_DIR = CMakeFiles\stellar_sim.dir\src\renderer
   TARGET_COMPILE_PDB = CMakeFiles\stellar_sim.dir\
@@ -116,8 +116,8 @@ build CMakeFiles/stellar_sim.dir/src/renderer/window_util.c.obj: C_COMPILER__ste
 #############################################
 # Link the executable stellar_sim.exe
 
-build stellar_sim.exe: C_EXECUTABLE_LINKER__stellar_sim_ CMakeFiles/stellar_sim.dir/src/glad.c.obj CMakeFiles/stellar_sim.dir/src/main/file_util.c.obj CMakeFiles/stellar_sim.dir/src/main/start.c.obj CMakeFiles/stellar_sim.dir/src/renderer/shader_util.c.obj CMakeFiles/stellar_sim.dir/src/renderer/window_util.c.obj | ../lib/GLFW/lib64/libglfw3.a
-  LINK_LIBRARIES = ../lib/GLFW/lib64/libglfw3.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+build stellar_sim.exe: C_EXECUTABLE_LINKER__stellar_sim_ CMakeFiles/stellar_sim.dir/src/glad.c.obj CMakeFiles/stellar_sim.dir/src/main/file_util.c.obj CMakeFiles/stellar_sim.dir/src/main/start.c.obj CMakeFiles/stellar_sim.dir/src/renderer/shader_util.c.obj CMakeFiles/stellar_sim.dir/src/renderer/window_util.c.obj | ../lib/GLFW/lib64/libglfw3.a ../lib/cglm/lib64/libcglm.a
+  LINK_LIBRARIES = ../lib/GLFW/lib64/libglfw3.a  ../lib/cglm/lib64/libcglm.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\stellar_sim.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
