@@ -26,6 +26,32 @@ unsigned int compileShader(unsigned int type, const char* src) {
     return id;
 }
 
+struct compShader* createCompShader(char* key){
+    char* base_path = "res/shader/";
+    char comp_path[64];
+    strcpy(comp_path, base_path);
+
+    strcat(comp_path, key);
+    strcat(comp_path, ".comp.glsl");
+
+    struct loaded_file* comp_src = readFile(comp_path);
+
+    unsigned int programID = glCreateProgram();
+    unsigned int compShaderID = compileShader(GL_COMPUTE_SHADER, comp_src->content);
+   
+    glAttachShader(programID, compShaderID);
+    glLinkProgram(programID);
+    glValidateProgram(programID);
+    
+    struct compShader* s = malloc(sizeof(s));
+    s->programID = programID;
+    s->compShaderID = compShaderID;
+
+    cleanLoadedFile(comp_src);
+
+    return s;
+}
+
 struct shader* createShader(char* key) {
     char* base_path = "res/shader/";
     char vert_path[64];
@@ -65,6 +91,10 @@ void startShader(struct shader* shader) {
     glUseProgram(shader->programID);
 }
 
+void startCompShader(struct compShader* shader) {
+    glUseProgram(shader->programID);
+}
+
 void stopShader(){
     glUseProgram(0);
 }
@@ -75,6 +105,15 @@ void cleanShader(struct shader* shader) {
     glDetachShader(shader->programID, shader->fragmentShaderID);
     glDeleteShader(shader->vertexShaderID);
     glDeleteShader(shader->fragmentShaderID);
+    glDeleteProgram(shader->programID);
+
+    free(shader);
+}
+
+void cleanCompShader(struct compShader* shader) {
+    stopShader();
+    glDetachShader(shader->programID, shader->compShaderID);
+    glDeleteShader(shader->compShaderID);
     glDeleteProgram(shader->programID);
 
     free(shader);

@@ -4,6 +4,62 @@
 #include "main/file_util.h"
 #include <math.h>
 
+#define NUM_PARTICLES 1024*1024
+#define WORK_GROUP_SIZE 128
+
+struct pos {
+    float x, y, z, w; // positions
+};
+
+struct vel {
+    float vx, vy, vz, vw; // velocities
+};
+
+void loadPoints(GLuint posSSbo) {
+    unsigned int vao;
+	glGenVertexArrays(1, &vao);
+	glBindVertexArray(vao);
+
+    float* buffer = malloc(sizeof(float) * 3 * NUM_PARTICLES);
+
+    glBindBuffer(GL_SHADER_STORAGE_BUFFER, posSSbo);
+    glBufferSubData(GL_SHADER_STORAGE_BUFFER, NUM_PARTICLES * 3 * sizeof(float), sizeof(float), buffer);
+
+	unsigned int vbo;
+	glGenBuffers(1, &vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glBufferData(GL_ARRAY_BUFFER, NUM_PARTICLES * 3 * sizeof(float), posSSbo, GL_STATIC_DRAW);
+
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
+void computeChecks() {
+    int work_grp_cnt[3];
+
+    glGetIntegeri_v(GL_MAX_COMPUTE_WORK_GROUP_COUNT, 0, &work_grp_cnt[0]);
+    glGetIntegeri_v(GL_MAX_COMPUTE_WORK_GROUP_COUNT, 1, &work_grp_cnt[1]);
+    glGetIntegeri_v(GL_MAX_COMPUTE_WORK_GROUP_COUNT, 2, &work_grp_cnt[2]);
+
+    printf("max global (total) work group counts x:%i y:%i z:%i\n",
+    work_grp_cnt[0], work_grp_cnt[1], work_grp_cnt[2]);
+
+    int work_grp_size[3];
+
+    glGetIntegeri_v(GL_MAX_COMPUTE_WORK_GROUP_SIZE, 0, &work_grp_size[0]);
+    glGetIntegeri_v(GL_MAX_COMPUTE_WORK_GROUP_SIZE, 1, &work_grp_size[1]);
+    glGetIntegeri_v(GL_MAX_COMPUTE_WORK_GROUP_SIZE, 2, &work_grp_size[2]);
+
+    printf("max local (in one shader) work group sizes x:%i y:%i z:%i\n",
+    work_grp_size[0], work_grp_size[1], work_grp_size[2]);
+
+    int work_grp_inv;
+    glGetIntegerv(GL_MAX_COMPUTE_WORK_GROUP_INVOCATIONS, &work_grp_inv);
+    printf("max local work group invocations %i\n", work_grp_inv);
+}
+
 void loadUniforms(vec3 position, vec3 scale, vec3 cameraPos, unsigned int mvp_location) {
     mat4 projection;
 	mat4 model;
@@ -24,203 +80,83 @@ void loadUniforms(vec3 position, vec3 scale, vec3 cameraPos, unsigned int mvp_lo
 	glUniformMatrix4fv(mvp_location, 1, GL_FALSE, mvp[0]);
 }
 
-void initPositions(long double* positions, long double* velocities, int width, int height, int depth) {
-    int index = 0;
-    for (int z = 0; z < depth; z++) {
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                positions[index] = (long double) x;
-                positions[index + 1] = (long double) y;
-                positions[index + 2] = (long double) z;
-                velocities[index] = 0;
-                velocities[index + 1] = 0;
-                velocities[index + 2] = 0;
-                index += 3;
-            }
-        }
-    }
-}
-
-void updatePositons(long double* positions, long double* velocities, int particle_count) {
-    long double sumx = 0;
-    long double sumy = 0;
-    long double sumz = 0;
-    for(int i = 0; i < particle_count * 3; i+=3){
-        sumx += positions[i];
-        sumy += positions[i + 1];
-        sumz += positions[i + 2];
-   //     printf("V: %f, %f, %f\n", positions[i], positions[i + 1], positions[i + 2]);
-    }
-
-    long double cmx = sumx / particle_count;
-    long double cmy = sumy / particle_count;
-    long double cmz = sumz / particle_count;
-
-   //printf("sum: %f, %f, %f\n", sumx, sumy, sumz);
-  // printf("cm: %f, %f, %f\n", cmx, cmy, cmz);
-  //  exit(0);
-
-    long double G = 6.67 * pow(10, -6);
-    long double dt = 0.1;
-
-    for(int i = 0; i < particle_count * 3; i+=3){
-        long double rx = cmx - positions[i];
-        long double ry = cmy - positions[i + 1];
-        long double rz = cmz - positions[i + 2];
-        long double rsqrd = (rx * rx) + (ry * ry) + (rz * rz);
-        long double a = 0;
-        long double ax = 0;
-        long double ay = 0;
-        long double az = 0;
-        if(rsqrd != 0) {
-            a = (G * (particle_count - 1)) / rsqrd;
-            long double r = sqrt(rsqrd);
-            ax = a * (rx / r);
-            ay = a * (ry / r);
-            az = a * (rz / r);
-            //if(i == 3)
-         //   printf("a: %Le, %Le, %Le\n", ax, ay, az);
-        }
-
-        // Gravitational perturbation
-        rx = -positions[i];
-        ry = -positions[i + 1];
-        rz = -positions[i + 2];
-        rsqrd = (rx * rx) + (ry * ry) + (rz * rz);
-        if(rsqrd != 0) {
-            a = (G * (100000000LL)) / rsqrd;
-            long double r = sqrt(rsqrd);
-            ax += a * (rx / r);
-            ay += a * (ry / r);
-            az += a * (rz / r);
-        }
-
-        // if( rsqrd < 0.01 ) {
-        //     velocities[i] ;
-        //     velocities[i + 1] = 0;
-        //     velocities[i + 2] = 0;
-        // }
-
-       // printf("a: %f, %f, %f\n", ax, ay, az);
-     //   printf("v: %f, %f, %f\n", velocities[i], velocities[i + 1], velocities[i + 2]);
-
-        positions[i] += velocities[i] * dt;
-        positions[i + 1] += velocities[i + 1] * dt;
-        positions[i + 2] += velocities[i + 2] * dt;
-        velocities[i] += ax * dt;
-        velocities[i + 1] += ay * dt;
-        velocities[i + 2] += az * dt;
-    }
- //  printf("v: %Le, %Le, %Le\n", velocities[0], velocities[1], velocities[2]);
-}
-
-void updateVertices(double* vertices, long double* positions, long double* velocities, int width, int height, int depth, unsigned int VBO) {
-    int index = 0;
-
-    for (int i = 0; i < width * height * depth * 3; i+=3) {
-
-        double velcolor = (velocities[i] * velocities[i]) + (velocities[i + 1] * velocities[i + 1]) + (velocities[i + 2] * velocities[i + 2]);
-        velcolor = velcolor / 50000;
-        if(velcolor > 1.0) velcolor = 1.0;
-
-        vertices[index] = ((double) (positions[i] - 0.5) / width);
-        vertices[index + 1] = ((double) (positions[i + 1] - 1.0) / height);
-        vertices[index + 2] = ((double) positions[i + 2] / depth);
-        vertices[index + 3] = ((double) velcolor);
-        vertices[index + 4] = ((double) 0.0);
-        vertices[index + 5] = ((double) 1.0 - velcolor);
-
-        vertices[index + 6] = ((double) (positions[i] + 0.5) / width);
-        vertices[index + 7] = ((double) (positions[i + 1] - 1.0) / height);
-        vertices[index + 8] = ((double) positions[i + 2] / depth);
-        vertices[index + 9] = ((double) velcolor);
-        vertices[index + 10] = ((double) 0.0);
-        vertices[index + 11] = ((double) 1.0 - velcolor);
-
-        vertices[index + 12] = ((double) positions[i] / width);
-        vertices[index + 13] = ((double) positions[i + 1] / height);
-        vertices[index + 14] = ((double) positions[i + 2] / depth);
-        vertices[index + 15] = ((double) velcolor);
-        vertices[index + 16] = ((double) 0.0);
-        vertices[index + 17] = ((double) 1.0 - velcolor);
-        index += 18;
-    }
-
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(double) * 18 * width * height * depth, vertices, GL_STATIC_DRAW);
-}
-
-
 int main(void) {
     GLFWwindow* window = createWindow(1200, 780, "Test");
 
     time_t t;
     srand((unsigned) time(&t));
 
-    int width = 75;
-    int height = 75;
-    int depth = 75;
-    int particle_count = width * height * depth;
+    computeChecks();
 
-    long double* positions = malloc(sizeof(long double) * particle_count * 3);
-    long double* velocities = malloc(sizeof(long double) * particle_count * 3);
-    double* vertices = malloc(sizeof(double) * 3 * 6 * particle_count);
+    GLuint posSSbo;
+    GLuint velSSbo;
 
-    initPositions(positions, velocities, width, height, depth);
+    glGenBuffers( 1, &posSSbo);
+    glBindBuffer( GL_SHADER_STORAGE_BUFFER, posSSbo );
+    glBufferData( GL_SHADER_STORAGE_BUFFER, NUM_PARTICLES * sizeof(struct pos), NULL, GL_STATIC_DRAW );
+    GLint bufMask = GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_BUFFER_BIT ; // the invalidate makes a big difference when re-writing
+    struct pos *points = (struct pos *) glMapBufferRange( GL_SHADER_STORAGE_BUFFER, 0, NUM_PARTICLES * sizeof(struct pos), bufMask );
+    for( int i = 0; i < NUM_PARTICLES; i++ ) {
+        points[ i ].x = Ranf( -100, 100 );
+        points[ i ].y = Ranf( -100, 100 );
+        points[ i ].z = Ranf( -100, 100 );
+        points[ i ].w = 1.;
+    }
+    glUnmapBuffer( GL_SHADER_STORAGE_BUFFER );
+    glGenBuffers( 1, &velSSbo);
+    glBindBuffer( GL_SHADER_STORAGE_BUFFER, velSSbo );
+    glBufferData( GL_SHADER_STORAGE_BUFFER, NUM_PARTICLES * sizeof(struct vel), NULL, GL_STATIC_DRAW );
+    struct vel *vels = (struct vel *) glMapBufferRange( GL_SHADER_STORAGE_BUFFER, 0, NUM_PARTICLES * sizeof(struct vel), bufMask );
+    for( int i = 0; i < NUM_PARTICLES; i++ ) {
+        vels[ i ].vx = Ranf( -10, 10 );
+        vels[ i ].vy = Ranf( -10, 10 );
+        vels[ i ].vz = Ranf( -10, 10 );
+        vels[ i ].vw = 0.;
+    }
+    glUnmapBuffer( GL_SHADER_STORAGE_BUFFER );
 
-    printf("init\n");
-
-    unsigned int VAO;
-    glGenVertexArrays(1, &VAO);
-	unsigned int VBO;
-	glGenBuffers(1, &VBO);
-
-    glBindVertexArray(VAO);
-
-    updateVertices(vertices, positions, velocities, width, height, depth, VBO);
-    printf("update vertices\n");
-
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_DOUBLE, GL_FALSE, 6 * sizeof(double), (const void*)0);
-
-    glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 3, GL_DOUBLE, GL_FALSE, 6 * sizeof(double), (const void*)24);
-
-	struct shader* particle_shader = createShader("particle");
-
+    struct compShader* compute_test = createCompShader("test");
+    struct shader* quad_shader = createShader("quad");
+    struct shader* particle_shader = createShader("particle");
     startShader(particle_shader);
-    glBindVertexArray(VAO);
+    unsigned int mvp_location = glGetUniformLocation(particle_shader->programID, "u_mvp");
 
     vec3 cameraPos = {-3, -3, -5};
     vec3 position = {0, 0, -1};
     vec3 scale = {2, 2, 2};
 
-    unsigned int mvp_location = glGetUniformLocation(particle_shader->programID, "u_mvp");
-
     glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
     glEnable(GL_DEPTH_TEST);
 
+    loadPoint();
+
     while (!glfwWindowShouldClose(window))
     {
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        {
+            glBindBufferBase( GL_SHADER_STORAGE_BUFFER, 4, posSSbo );
+            glBindBufferBase( GL_SHADER_STORAGE_BUFFER, 5, velSSbo );
 
-        updatePositons(positions, velocities, particle_count);
-        updateVertices(vertices, positions, velocities, width, height, depth, VBO);
+            startCompShader(compute_test);
+            glDispatchCompute(NUM_PARTICLES / WORK_GROUP_SIZE, 1, 1);
+        }
+
+        glMemoryBarrier( GL_SHADER_STORAGE_BARRIER_BIT );
+
+        // {
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        loadPoints();
+        startShader(particle_shader);
         loadUniforms(position, scale, cameraPos, mvp_location);
-        glDrawArrays(GL_TRIANGLES, 0, particle_count * 3);
-
-       // cameraPos[2] += 0.001f;
-      //  printf("%f\n", cameraPos[2]);
+        glDrawArrays(GL_POINTS, 0, 4);
+        //}
 
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
 
-    free(vertices);
-
-    cleanShader(particle_shader);
+    cleanCompShader(compute_test);
  
     glfwDestroyWindow(window);
  

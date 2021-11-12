@@ -1,8 +1,8 @@
 #version 460 core
+
 out vec4 out_color;
 
-in vec4 v_Color;
-
 void main() {
-    out_color = v_Color;
+    out_color = vec4(1.0);
+    
 }
